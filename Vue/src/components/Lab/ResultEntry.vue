@@ -10,9 +10,7 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="navbar-nav mr-auto">
-            <router-link to="/" class="nav-item nav-link">Home</router-link>
-            <router-link to="/TestEntry" class="nav-item nav-link">Test</router-link>
-            <router-link to="/UserEntry" class="nav-link">Users</router-link>
+            <router-link to="/PatientListLab" class="nav-link">Home</router-link>
             <a href="javascript:void(0)" style="margin-left:850px; margin-top:7px;text-decoration: none;" @click="handleClick">Logout</a>
         </div>
         <!-- <form class="d-flex">
@@ -23,11 +21,15 @@
 </nav>
  </div>
   <router-view/>
-
-  {{patientInfo.patient_id}}
-  {{patientInfo.name}}
-  {{patientInfo.email}}
-  {{patientInfo.age}}
+<br>
+<br>
+ <div class="container offset-1">
+  <span>ID: {{patientInfo.patient_id}}</span>
+  <br>
+  <span>Name: {{patientInfo.name}}</span>
+  <br>
+  <span>Email:{{patientInfo.email}}</span>
+  <br><br>
   <form @submit.prevent="resultEntry">
  <table id="example" class="table table-striped text-center" style=" background-color: rgb(0, 225, 255);">
     <thead> 
@@ -58,6 +60,20 @@
 
  <b-button type="submit" @click="click()" variant="success">Submit</b-button>
  </form>
+ </div>
+ <br>
+<br>
+<div class="col-sm-2 col-md-8 offset-md-2 " style="margin-top:160px">
+<div style="color:skyblue; border-top: 2px solid;"></div>
+</div>
+<footer class="text-center">
+      <pre>
+        <code>
+          Copyright ©2011-2021 Chittagong Diagnostic Center, All Rights Reserved.
+          <!-- Software Section , Department of IT,Premier University (Design & Develop) -->
+        </code>
+      </pre>
+</footer>
 </div>
 </template>
 
@@ -78,6 +94,7 @@ export default {
        patient:[],
        patientInfo:{},
        result: [],
+       show:false
         }
     },
 
@@ -118,7 +135,8 @@ export default {
                 })
                 .then((res)=>{
                     self.message = 'Data is entered'
-                     //this.$router.push({ name: 'PatientList' });
+                    
+                     this.$router.push({ name: 'PatientListLab' });
                     })
          },
 
@@ -145,7 +163,7 @@ export default {
 </script>
 
 <style>
-#nav {
+/* #nav {
   padding: 30px;
   text-align: center;
 }
@@ -159,6 +177,9 @@ export default {
   color: rgb(58, 203, 223);
   background: crimson;
   border-radius: .5rem;
+} */
+body {background:  #00C9FF;
+  
+  /* background: linear-gradient(to right, #72eff3ee, #008c91); */
 }
-
 </style>
