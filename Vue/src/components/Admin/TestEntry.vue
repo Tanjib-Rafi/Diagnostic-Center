@@ -1,15 +1,33 @@
 <template>
-<div class="offset-md-1 mt-5">
-  <li>
-                        <a href="javascript:void(0)" @click="handleClick">
-                            Logout
-                        </a>
-                    </li>
-    <button type='button' class="btn btn-info" @click="addNewRow">
+<div class="container">
+<div id="app" class=" container" v-bind:style="{ backgroundColor: color}">
+      <div id="nav" class="row">
+  <nav class="container navbar navbar-expand-lg navbar-light bg-light">
+    <!-- <a class="navbar-brand" href="#">Diagnostic Center</a> -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto">
+            <router-link to="/TestEntry" class="nav-item nav-link">Home</router-link>
+            <router-link to="/UserEntry" class="nav-link">Users</router-link>
+            <a href="javascript:void(0)" style="margin-left:850px; margin-top:7px;text-decoration: none;" @click="handleClick">Logout</a>
+        </div>
+    </div>
+</nav>
+ </div>
+  <router-view/> 
+</div>
+
+ <div class="container offset-1">
+   <br>
+      <button type='button' class="btn btn-info" @click="addNewRow">
     <i class="fas fa-plus-circle"></i>
     Add
     </button>
-
+<br>
 <form ref="anyName" @submit.prevent="test">
 <tr v-for="(invoice_product, k) in invoice_products" :key="k"> 
     <td scope="row" class="trashIconContainer">
@@ -17,26 +35,18 @@
     </td>
 
     <td>
-      <!-- <div class="form-group has-warning has-feedback"> -->
-        <input class="form-control"   type="text"  placeholder="Enter Test Name" v-model="invoice_product.name"/>
-        <!-- <span :class="[dynamic_class ? 'success' : 'danger']">{{ message }}</span> -->
-        
-           <!-- <input class="input" v-model="invoice_product.name"  @change="VerifyName">
-           <pre>{{ invoice_product.name }}</pre>
-         <div class="help is-danger" v-show="nameTaken" v-cloak>This e mail is taken</div>
-        <div class="help is-success" v-show="nameAvailable" v-cloak>Great. this email is available</div> -->
+        <input class="form-control" required type="text"  placeholder="Enter Test Name" v-model="invoice_product.name"/>
     </td>
 
     <td>
-        <input class="form-control text-right" type="number" placeholder="Enter Price" min="0" step=".01" v-model="invoice_product.price"/>
+        <input class="form-control text-right" required type="number" placeholder="Enter Price" min="0" step=".01" v-model="invoice_product.price"/>
     </td>
 </tr>
-
 <div>
   <b-button type="submit" variant="success">Submit</b-button>
 </div>
 </form>
-
+<br>
 <b-row class="mb-3">
     <b-col md="3">
         <b-form-input v-model="filter" type="search" id="filterInput" placeholder="Search by Name"></b-form-input>
@@ -44,7 +54,7 @@
 </b-row>
 
     <b-row>
-      <b-col md="8">
+      <b-col md="10">
         <b-table
          ref="table"
           striped
@@ -57,15 +67,16 @@
           :per-page="perPage"
           :filter="filter"
           @filtered="onFiltered"
+          class="table table-striped text-center"
         >
         <template #cell(name)="data">
           <div v-if="editting===data.item.id">
-            <b-form-input type="text" name="name" v-model="form.name" ></b-form-input>
+            <b-form-input type="text" name="name" v-model="form.name" required></b-form-input>
             </div>
           <span v-else>{{data.item.name}}</span>
         </template>
         <template #cell(price)="data">
-          <div v-if="editting===data.item.id"><b-form-input type="text" name="price" v-model="form.price"></b-form-input></div>
+          <div v-if="editting===data.item.id"><b-form-input type="number" name="price" v-model="form.price"></b-form-input></div>
           <span v-else>{{data.item.price}}</span>
         </template>
 
@@ -114,6 +125,20 @@
         ></b-pagination>
       </b-col>
 </b-row>
+ </div>
+<br>
+<br>
+<div class="col-sm-2 col-md-8 offset-md-2 ">
+<div style="color:skyblue; border-top: 2px solid;"></div>
+</div>
+<footer class="text-center">
+      <pre>
+        <code>
+          Copyright ©2011-2021 Chittagong Diagnostic Center, All Rights Reserved.
+          <!-- Software Section , Department of IT,Premier University (Design & Develop) -->
+        </code>
+      </pre>
+</footer>
 </div>
 </template>
 
@@ -269,10 +294,6 @@ export default {
 
         },
 
-
-
-
-
         handleClick()
         {
         localStorage.removeItem('token');
@@ -304,4 +325,5 @@ export default {
  border:1px solid #ff0000;
 }
 
+body {background:  #00C9FF;}
 </style>
