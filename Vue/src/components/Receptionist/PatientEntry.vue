@@ -10,9 +10,8 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="navbar-nav mr-auto">
-            <router-link to="/" class="nav-item nav-link">Home</router-link>
-            <router-link to="/TestEntry" class="nav-item nav-link">Test</router-link>
-            <router-link to="/UserEntry" class="nav-link">Users</router-link>
+            <router-link to="/PatientEntry" class="nav-item nav-link">Home</router-link>
+            <router-link to="/PatientList" class="nav-link">List</router-link>
             <a href="javascript:void(0)" style="margin-left:850px; margin-top:7px;text-decoration: none;" @click="handleClick">Logout</a>
         </div>
         <!-- <form class="d-flex">
@@ -28,24 +27,26 @@
   <form @submit.prevent="patientEntry">
      <div class="form-group">
     <label for="exampleInputEmail1">Name</label>
-    <input type="text" class="form-control" v-model="patients.name"  placeholder="Enter Name">
+    <input type="text" class="form-control" v-model="patients.name"  placeholder="Enter Name" required>
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" v-model="patients.email" placeholder="Enter email">
+    <input type="email" class="form-control" v-model="patients.email" placeholder="Enter email" required>
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Age</label>
-    <input type="number" class="form-control" v-model="patients.age" placeholder="Enter Age">
+    <input type="number" class="form-control" v-model="patients.age" placeholder="Enter Age" required>
   </div>
  
 <div class="form-check-inline">
     <div class="form-group">
-            <input class="form-check-input" type="radio" v-model="patients.gender"  id="" value="Male">
+          <label>Gender</label>
+      <br>
+            <input class="form-check-input" type="radio" v-model="patients.gender"  id="" value="Male" >
                 <label class="form-check-label" for="">
                     Male
             </label>
-            <input class="form-check-input" type="radio" v-model="patients.gender" id=""  value="Female">
+            <input class="form-check-input" type="radio" v-model="patients.gender" id=""  value="Female" >
                 <label class="form-check-label" for="">
                     Female
             </label>
@@ -53,7 +54,7 @@
 </div>
 <div class="form-group">
     <label for="exampleInputPassword1">Phone Number</label>
-    <input type="number" class="form-control" v-model="patients.phone" placeholder="Enter Phone Number">
+    <input type="number" class="form-control" v-model="patients.phone" placeholder="Enter Phone Number" required>
 </div>
 <table class="table">
   <thead>
@@ -72,7 +73,7 @@
       <td><b-button @click="cancleButton(index)" > <span><i class="material-icons">&#xE5CD;</i></span></b-button></td>
     </tr> 
   </tbody>
-   <div  class="text-center" v-if="selected.length < 1"><p> No Test selected yet!</p></div>
+   <div  class="text-center" v-if="selected.length < 1"><p>No Test selected yet!</p></div>
     <tfoot>
         <tr>
             <td colspan="5" class="text-right">Sub Total</td>
@@ -98,13 +99,16 @@
     </tfoot>
 </table>
  <b-button type="submit" @click="download" onclick="window.print()" variant="success">Submit</b-button>
-                             <router-link to="/pdfview" class="btn btn-info" >View</router-link>
+
+  <!-- <router-link to="/pdfview/ + {iddd}" class="btn btn-sm btn btn-warning"> View</router-link> -->
+    
+
 </form>
 </div>
 
 <div class="col-6 mt-5">
 <b-row class="mb-3">
-    <b-col md="3">
+    <b-col md="5">
         <b-form-input v-model="filter" type="search" id="filterInput" placeholder="Search by Name"></b-form-input>
       </b-col>
 </b-row>
@@ -154,6 +158,19 @@
 </b-row>
 </div>
 </div>
+<br>
+<br>
+<div class="col-sm-2 col-md-8 offset-md-2 ">
+<div style="color:skyblue; border-top: 2px solid;"></div>
+</div>
+<footer class="text-center">
+      <pre>
+        <code>
+          Copyright ©2011-2021 Chittagong Diagnostic Center, All Rights Reserved.
+          <!-- Software Section , Department of IT,Premier University (Design & Develop) -->
+        </code>
+      </pre>
+</footer>
 </div>
 </template>
 
@@ -203,6 +220,9 @@ export default {
     },
         discountedPrice() {
     return this.total_price - (this.total_price *(this.discount)/100)
+  },
+        iddd() {
+    return this.patient.patient_id
   },
     },
 
@@ -313,5 +333,5 @@ export default {
 </script>
 
 <style>
-
+body {background:  #00C9FF;}
 </style>
