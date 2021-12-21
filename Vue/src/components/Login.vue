@@ -9,7 +9,7 @@
               <span></span>
               <span></span>
               <div class="content">
-                <h1 class="mt-4">Admin Login</h1>
+                <h1 class="mt-4">Login</h1>
                 <form @submit.prevent="login">
                         <div class="login-form">                               
                                 <div class="form-group row mb-2"  style="text-align: left;">
@@ -117,16 +117,20 @@ export default {
 
 .gradient
 {
-    background: linear-gradient(to right, #9cecfb, #65c7f7, #0052d4);
+    /* background: linear-gradient(to right, #9cecfb, #65c7f7, #0052d4); */
+   background:  #00C9FF;
+
 }
 .gradient1
 {
-    background: linear-gradient(to right, #9cecfb, #65c7f7, #0052d4);
+   background:  #00C9FF;
+    /* background: linear-gradient(to right, #9cecfb, #65c7f7, #0052d4); */
 }
 
 
   body{
-    background: linear-gradient(to right, #9cecfb, #65c7f7, #0052d4);
+   background:  #00C9FF;
+    /* background: linear-gradient(to right, #9cecfb, #65c7f7, #0052d4); */
   }
 
   
